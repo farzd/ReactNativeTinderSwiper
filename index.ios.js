@@ -45,31 +45,25 @@ export default class cardswiper extends Component {
                 null, {dx: this.state.pan.x, dy: this.state.pan.y}
             ]),
             onPanResponderRelease: (evt, {vx, vy}) => {
-                console.log(vx);
-           if (Math.abs(this.state.pan.x._value) > 150) {
-
-               if (vx > 0) {
-                   Animated.decay(this.state.pan, {
-                              velocity: {x: 6, y: 2},
-                              deceleration: 0.98
-                          }).start()
-               } else{
-                   Animated.decay(this.state.pan, {
-                              velocity: {x: -6, y: 2},
-                              deceleration: 0.98
-                          }).start()
+                if (Math.abs(this.state.pan.x._value) > 150) {
+                   if (vx > 0) {
+                       Animated.decay(this.state.pan, {
+                                  velocity: {x: 6, y: 2},
+                                  deceleration: 0.98
+                              }).start()
+                   } else{
+                       Animated.decay(this.state.pan, {
+                                  velocity: {x: -6, y: 2},
+                                  deceleration: 0.98
+                              }).start()
+                   }
                }
-
-           }
-
-           else {
-                Animated.spring(this.state.pan, {
-                    toValue: {x: 0, y: 0},
-                    friction: 7
-                }).start()
-            }
-              // The user has released all touches while this view is the
-              // responder. This typically means a gesture has succeeded
+               else {
+                    Animated.spring(this.state.pan, {
+                        toValue: {x: 0, y: 0},
+                        friction: 7
+                    }).start()
+                }
             }
         });
   }
